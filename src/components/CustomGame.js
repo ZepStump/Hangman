@@ -28,8 +28,9 @@ export default function CustomGame() {
           type="text"
           value={customWord}
           onChange={(e) => handleChange(e)}
-        />
+          placeholder="Customize word.."></input>
       </label>
+      
       <button
         className="custom-game-form__btn"
         type="submit"
@@ -37,6 +38,7 @@ export default function CustomGame() {
       >
         Get Link
       </button>
+
     </form>
   );
 }
