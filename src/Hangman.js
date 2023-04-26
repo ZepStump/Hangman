@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import Header from "./components/Header";
 import Visual from "./components/Graphic";
 import Word from "./components/Word";
