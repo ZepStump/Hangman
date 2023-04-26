@@ -34,13 +34,13 @@ function Leaderboard() {
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
         {`
-  body{
-    background-color: #10131c;
-    background-size: cover;
-    background-image: url('https://cdn.vectorstock.com/i/1000x1000/49/68/black-and-blue-background-design-template-vector-37054968.webp');
-    font-family: 'Roboto', sans-serif;
-  }
-  `}
+          body{
+            background-color: #10131c;
+            background-size: cover;
+            background-image: url('https://cdn.vectorstock.com/i/1000x1000/49/68/black-and-blue-background-design-template-vector-37054968.webp');
+            font-family: 'Roboto', sans-serif;
+          }
+          `}
       </style>
       <h1 className='leaderboard-title'>Leaderboard</h1>
       <div className="select-container">
@@ -51,7 +51,7 @@ function Leaderboard() {
           onChange={(e) => setNumEntities(parseInt(e.target.value))}
         >
           {/* only show 10 / 15 top players */}
-          <option value={10}>10</option>  
+          <option value={10}>10</option>
           <option value={15}>15</option>
         </select>
       </div>

@@ -1,33 +1,7 @@
 import React from "react";
-
-const letters = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
-];
+const line1 = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O'];
+const line2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
+const line3 = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
 
 // displays letter buttons for user to click and update with reseult (green/red)
 export default function Letters({
@@ -43,16 +17,43 @@ export default function Letters({
     setGuessedLetters({ ...guessedLetters, [letter]: isCorrect });
   };
   return (
+   <div>
+     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
+        {`
+          body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 97vh;
+            background: #00BCD4;
+          }
+          `}
+      </style>
+   
     <div className="letters">
-      {letters.map((letter) => (
-        <button
-          className="letters__btn"
-          key={letter.toLowerCase()}
-          onClick={() => handleClick(letter.toLowerCase())}
-        >
-          {letter}
-        </button>
+      <div class="base">
+
+      <div class="line1">
+      {line1.map((letter) => (
+        <span onClick={() => handleClick(letter.toLowerCase())}>{letter}</span>
       ))}
+    </div>
+
+    <div class="line2">
+      {line2.map((letter) => (
+        <span onClick={() => handleClick(letter.toLowerCase())}>{letter}</span>
+      ))}
+    </div>
+
+    <div class="line3">
+      {line3.map((letter) => (
+        <span onClick={() => handleClick(letter.toLowerCase())}>{letter}</span>
+      ))}
+    </div>
+
+      </div>
+    </div>
     </div>
   );
 }
