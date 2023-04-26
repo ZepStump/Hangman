@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 import Header from "./components/Header";
 import Visual from "./components/Graphic";
 import Word from "./components/Word";
 import Letters from "./components/Letters";
-import Leaderboard from "./components/Leaderboard";
+// import Leaderboard from "./components/Leaderboard";
 import CustomGame from "./components/CustomGame";
 import GuessedLetters from "./components/GuessedLetters";
 
