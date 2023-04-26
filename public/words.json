@@ -1,0 +1,152 @@
+{
+  "easy": {
+    "Animals": [
+      "dog",
+      "cat",
+      "cow",
+      "pig",
+      "fox",
+      "rat",
+      "hen",
+      "duck",
+      "bee",
+      "bat"
+    ],
+    "Fruits": [
+      "apple",
+      "pear",
+      "banana",
+      "grape",
+      "kiwi",
+      "peach",
+      "plum",
+      "orange",
+      "mango",
+      "melon"
+    ],
+    "Sports": [
+      "tennis",
+      "golf",
+      "swim",
+      "run",
+      "hike",
+      "bike",
+      "yoga",
+      "surf",
+      "dance",
+      "ski"
+    ],
+    "Colors": [
+      "red",
+      "blue",
+      "green",
+      "pink",
+      "yellow",
+      "white",
+      "black",
+      "brown",
+      "purple",
+      "gray"
+    ]
+  },
+  "medium": {
+    "Animals": [
+      "tiger",
+      "elephant",
+      "giraffe",
+      "rhinoceros",
+      "kangaroo",
+      "hippopotamus",
+      "penguin",
+      "octopus",
+      "zebra",
+      "iguana"
+    ],
+    "Fruits": [
+      "pineapple",
+      "raspberry",
+      "watermelon",
+      "grapefruit",
+      "avocado",
+      "pomegranate",
+      "passionfruit",
+      "guava",
+      "coconut",
+      "fig"
+    ],
+    "Sports": [
+      "football",
+      "basketball",
+      "baseball",
+      "volleyball",
+      "boxing",
+      "karate",
+      "hockey",
+      "soccer",
+      "gymnastics",
+      "wrestling"
+    ],
+    "Colors": [
+      "turquoise",
+      "magenta",
+      "lavender",
+      "maroon",
+      "teal",
+      "beige",
+      "olive",
+      "navy",
+      "taupe",
+      "coral"
+    ]
+  },
+  "hard": {
+    "Animals": [
+      "orangutan",
+      "hedgehog",
+      "anteater",
+      "platypus",
+      "chimpanzee",
+      "porcupine",
+      "leopard",
+      "weasel",
+      "crocodile",
+      "gazelle"
+    ],
+    "Fruits": [
+      "persimmon",
+      "starfruit",
+      "kiwano",
+      "durian",
+      "rambutan",
+      "mangosteen",
+      "jackfruit",
+      "cherimoya",
+      "custard apple",
+      "soursop"
+    ],
+    "Sports": [
+      "triathlon",
+      "bobsledding",
+      "figure skating",
+      "judo",
+      "snowboarding",
+      "water polo",
+      "rowing",
+      "sailing",
+      "fencing",
+      "pole vaulting"
+    ],
+    "Colors": [
+      "chartreuse",
+      "crimson",
+      "cerulean",
+      "mauve",
+      "amethyst",
+      "vermilion",
+      "sepia",
+      "ochre",
+      "fuchsia",
+      "aubergine"
+    ]
+  }
+}
