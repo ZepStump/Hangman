@@ -22,7 +22,7 @@ const letters = [
   "S",
   "T",
   "U",
-  "Z",
+  "V",
   "W",
   "X",
   "Y",
@@ -31,5 +31,21 @@ const letters = [
 
 // displays letter buttons for user to click and update with reseult (green/red)
 export default function Letters() {
-  return <div className="letters">Letters</div>;
+  // handle user clicking letter
+  const handleClick = (letter) => {
+    console.log(`Clicked: ${letter}`);
+  };
+  return (
+    <div className="letters">
+      {letters.map((letter) => (
+        <button
+          className="letters__btn"
+          key={letter.toLowerCase()}
+          onClick={() => handleClick(letter.toLowerCase())}
+        >
+          {letter}
+        </button>
+      ))}
+    </div>
+  );
 }
