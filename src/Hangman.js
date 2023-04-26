@@ -6,12 +6,15 @@ import Word from "./components/Word";
 import Letters from "./components/Letters";
 import Leaderboard from "./components/Leaderboard";
 import CustomGame from "./components/CustomGame";
+import GuessedLetters from "./components/GuessedLetters";
 
 export default function Hangman() {
   // current active game word
   const [gameWord, setGameWord] = useState(null);
-  //   object of guessed letters format letter: true/false if in word
+  // array of guessed letters
   const [guessedLetters, setGuessedLetters] = useState({});
+  //   track number of wrong guesses
+  const [wrongGuesses, setWrongGuesses] = useState(0);
 
   //   init game word
   useEffect(() => {
@@ -24,7 +27,9 @@ export default function Hangman() {
       <Header />
       <Visual />
       {gameWord && <Word gameWord={gameWord} guessedLetters={guessedLetters} />}
+      <GuessedLetters guessedLetters={guessedLetters} />
       <Letters
+        gameWord={gameWord}
         guessedLetters={guessedLetters}
         setGuessedLetters={setGuessedLetters}
       />

@@ -30,10 +30,17 @@ const letters = [
 ];
 
 // displays letter buttons for user to click and update with reseult (green/red)
-export default function Letters() {
+export default function Letters({
+  gameWord,
+  guessedLetters,
+  setGuessedLetters,
+}) {
   // handle user clicking letter
   const handleClick = (letter) => {
     console.log(`Clicked: ${letter}`);
+    const isCorrect = gameWord.includes(letter);
+    console.log(isCorrect);
+    setGuessedLetters({ ...guessedLetters, [letter]: isCorrect });
   };
   return (
     <div className="letters">
