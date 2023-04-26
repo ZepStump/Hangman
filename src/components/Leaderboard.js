@@ -1,39 +1,36 @@
-import React from "react";
-import { useState, useEffect } from "react";
-// leaderboard to show top players
-// could be pop out, toggle to view, or scroll to view
+import { useState, useEffect } from 'react';
 
 function Leaderboard() {
   const [users, setUsers] = useState({});
 
-  // Add some users to the state
   useEffect(() => {
     setUsers({
-      user1: 10,
-      user2: 95,
-      user3: 80,
-      user4: 75
+      user1: { score: 100, wins: 10 },
+      user2: { score: 95, wins: 8 },
+      user3: { score: 80, wins: 5 },
+      user4: { score: 75, wins: 3 }
     });
   }, []);
 
-  // Sort the users by score in descending order
-  const sortedUsers = Object.entries(users).sort((a, b) => b[1] - a[1]);
+  const sortedUsers = Object.entries(users).sort((a, b) => b[1].score - a[1].score);
 
   return (
-    <div>
-      <h1>Leaderboard</h1>
-      <table>
+    <div className="leaderboard-container">
+      <h1 className='leaderboard-title'>Leaderboard</h1>
+      <table className="leaderboard-table">
         <thead>
           <tr>
             <th>Username</th>
             <th>Score</th>
+            <th>Wins</th>
           </tr>
         </thead>
         <tbody>
-          {sortedUsers.map(([username, score]) => (
+          {sortedUsers.map(([username, { score, wins }]) => (
             <tr key={username}>
               <td>{username}</td>
               <td>{score}</td>
+              <td>{wins}</td>
             </tr>
           ))}
         </tbody>
