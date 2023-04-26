@@ -7,12 +7,10 @@ import Letters from "./components/Letters";
 import Leaderboard from "./components/Leaderboard";
 
 export default function Hangman() {
-  const [gameWord, setGameWord] = useState("hangman");
-  const [guessedLetters, setGuessedLetters] = useState({
-    a: true,
-    m: true,
-    c: false,
-  });
+  // current active game word
+  const [gameWord, setGameWord] = useState();
+  //   object of guessed letters format letter: true/false if in word
+  const [guessedLetters, setGuessedLetters] = useState({});
 
   const testWords = ["test", "hangman"];
 
