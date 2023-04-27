@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { difficulties, randomWord } from "./RandomWord";
 import Header from "./components/Header";
 import Visual from "./components/Graphic";
@@ -22,8 +22,8 @@ export default function Hangman() {
 
   //   init game word
   useEffect(() => {
-    console.log("Setting gameword to random");
-    setGameWord(randomWord(difficulty));
+    console.log("Setting gameword to hangman");
+    setGameWord({ category: "Testing", word: randomWord(difficulty) });
   }, []);
 
   //   update lives on guessedletters update
@@ -77,13 +77,13 @@ export default function Hangman() {
         </div>
       </div>
 
-      <CustomGame/>
+      <CustomGame />
       <button
         className="custom-game-form__btn"
         onClick={() => {
         changeDifficulty(); 
         setGuessedLetters({}); 
-        setGameWord(randomWord(difficulties[(difficulties.indexOf(difficulty)===3 ? 0 : difficulties.indexOf(difficulty)+1)]))
+        setGameWord({ category: "Testing", word: randomWord(difficulties[(difficulties.indexOf(difficulty)===3 ? 0 : difficulties.indexOf(difficulty)+1)]) });
       }}
       >
         Difficulty: {difficulty}
