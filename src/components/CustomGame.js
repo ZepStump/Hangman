@@ -5,6 +5,10 @@ export default function CustomGame() {
   // custom word controlled input
   const [customWord, setCustomWord] = useState("");
 
+  // Difficulty of the words
+  const [difficulty, setDifficulty] = useState("Easy");
+  const difficulties = ["Easy", "Medium", "Hard", "Expert"];
+
   // handle user input change
   const handleChange = (e) => {
     setCustomWord(e.target.value);
@@ -37,6 +41,13 @@ export default function CustomGame() {
         htmlFor="custom-game-form"
       >
         Get Link
+      </button>
+
+      <button
+        className="custom-game-form__btn"
+        onClick={() => {setDifficulty(difficulties[(difficulty==='Expert' ? 0 : difficulties.indexOf(difficulty) + 1)])}}
+      >
+        Difficulty: {difficulty}
       </button>
 
     </form>

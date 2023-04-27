@@ -19,7 +19,7 @@ export default function Hangman() {
   //   init game word
   useEffect(() => {
     console.log("Setting gameword to hangman");
-    setGameWord("hangman");
+    setGameWord(randomWord());
   }, []);
 
   return (

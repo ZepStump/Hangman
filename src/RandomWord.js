@@ -12,6 +12,7 @@ let Word = [
   "...",
 ];
 
+
 function randomWord() {
   return Word[
     Math.floor(Math.random() * Word.length)
