@@ -1,4 +1,5 @@
 import React from "react";
+import '../App.css';
 import image0 from "../images/0.jpg";
 import image1 from "../images/1.jpg";
 import image2 from "../images/2.jpg";
@@ -12,8 +13,8 @@ const images = [image0, image1, image2, image3, image4, image5, image6];
 // displays graphic game state
 export default function Graphic({image, setImage}) {
   return (
-    <div className="graphic">
-      <img alt="Hangman" src={images[image]} />
-    </div>
+    <center className="graphic">
+      <img className="Hangman-image" alt="Hangman" src={images[image]} />
+    </center>
   );
 }
