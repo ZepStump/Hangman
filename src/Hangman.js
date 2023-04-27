@@ -13,8 +13,6 @@ export default function Hangman() {
   const [gameWord, setGameWord] = useState(null);
   // array of guessed letters
   const [guessedLetters, setGuessedLetters] = useState({});
-  //   track number of wrong guesses
-  const [wrongGuesses, setWrongGuesses] = useState(0);
 
   // Difficulty of the words
   const [difficulty, setDifficulty] = useState("Easy");
@@ -28,11 +26,39 @@ export default function Hangman() {
     setGameWord(randomWord(difficulty));
   }, []);
 
+  //   update lives on guessedletters update
+  const lives = useMemo(() => {
+    // decrement lives if letter not in word
+    const livesRemaining = Object.values(guessedLetters).reduce(
+      (previousValue, currentValue) =>
+        currentValue ? previousValue : previousValue - 1,
+      5
+    );
+
+    return livesRemaining;
+  }, [guessedLetters]);
+
+  // check if game won on guessedletters update
+  const gameWon = useMemo(() => {
+    if (gameWord && guessedLetters) {
+      const wordLetterList = [...gameWord.word.replaceAll(" ", "")];
+      console.log(wordLetterList);
+      const wonChecker = (guessed, word) =>
+        word.every((letter) => guessed.includes(letter));
+
+      return wonChecker(Object.keys(guessedLetters), wordLetterList);
+    } else {
+      return false;
+    }
+  }, [gameWord, guessedLetters]);
+
   return (
     <>
       <Header />
       <Visual />
       {gameWord && <Word gameWord={gameWord} guessedLetters={guessedLetters} />}
+      <p>{lives}</p>
+      <p>{gameWon}</p>
       <GuessedLetters guessedLetters={guessedLetters} />
       <Letters
         gameWord={gameWord}
