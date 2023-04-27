@@ -12,7 +12,7 @@ export default function Letters({
   // handle user clicking letter
   const handleClick = (letter) => {
     console.log(`Clicked: ${letter}`);
-    const isCorrect = gameWord.includes(letter);
+    const isCorrect = gameWord.word.includes(letter);
     console.log(isCorrect);
     setGuessedLetters({ ...guessedLetters, [letter]: isCorrect });
   };
