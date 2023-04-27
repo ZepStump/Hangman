@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { randomWord } from "./RandomWord";
+import { difficulties, randomWord } from "./RandomWord";
 import Header from "./components/Header";
 import Visual from "./components/Graphic";
 import Word from "./components/Word";
@@ -14,10 +14,20 @@ export default function Hangman() {
   // array of guessed letters
   const [guessedLetters, setGuessedLetters] = useState({});
 
+  // Difficulty of the words
+  const [difficulty, setDifficulty] = useState("Easy");
+
+  // Changing the difficulty
+  const changeDifficulty = () => setDifficulty(difficulties[(difficulty==='Quotes' ? 0 : difficulties.indexOf(difficulty) + 1)]);
+
+  // Getting and Setting images
+  const [image, setImage] = useState(0);
+
   //   init game word
   useEffect(() => {
     console.log("Setting gameword to hangman");
-    setGameWord({ category: "Testing", word: "hangman" });
+    setGameWord({ category: "Testing", word: randomWord(difficulty) });
+    setImage(0);
   }, []);
 
   //   update lives on guessedletters update
@@ -26,8 +36,9 @@ export default function Hangman() {
     const livesRemaining = Object.values(guessedLetters).reduce(
       (previousValue, currentValue) =>
         currentValue ? previousValue : previousValue - 1,
-      5
+      6
     );
+    setImage(6-livesRemaining);
 
     return livesRemaining;
   }, [guessedLetters]);
@@ -49,7 +60,7 @@ export default function Hangman() {
   return (
     <>
       <Header />
-      <Visual />
+      <Visual image={image} setImage={setImage}/>
       {gameWord && <Word gameWord={gameWord} guessedLetters={guessedLetters} />}
       <p>{lives}</p>
       <p>{gameWon}</p>
@@ -72,6 +83,16 @@ export default function Hangman() {
       </div>
 
       <CustomGame />
+      <button
+        className="custom-game-form__btn"
+        onClick={() => {
+        changeDifficulty(); 
+        setGuessedLetters({}); 
+        setGameWord({ category: "Testing", word: randomWord(difficulties[(difficulties.indexOf(difficulty)===3 ? 0 : difficulties.indexOf(difficulty)+1)]) });
+      }}
+      >
+        Difficulty: {difficulty}
+      </button>
     </>
   );
 }
