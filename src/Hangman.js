@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { randomWord } from "./RandomWord";
+import { difficulties, randomWord } from "./RandomWord";
 import Header from "./components/Header";
 import Visual from "./components/Graphic";
 import Word from "./components/Word";
@@ -16,10 +16,16 @@ export default function Hangman() {
   //   track number of wrong guesses
   const [wrongGuesses, setWrongGuesses] = useState(0);
 
+  // Difficulty of the words
+  const [difficulty, setDifficulty] = useState("Easy");
+
+  // Changing the difficulty
+  const changeDifficulty = () => setDifficulty(difficulties[(difficulty==='Quotes' ? 0 : difficulties.indexOf(difficulty) + 1)]);
+
   //   init game word
   useEffect(() => {
-    console.log("Setting gameword to hangman");
-    setGameWord(randomWord());
+    console.log("Setting gameword to random");
+    setGameWord(randomWord(difficulty));
   }, []);
 
   return (
@@ -45,7 +51,17 @@ export default function Hangman() {
         </div>
       </div>
 
-      <CustomGame />
+      <CustomGame/>
+      <button
+        className="custom-game-form__btn"
+        onClick={() => {
+        changeDifficulty(); 
+        setGuessedLetters({}); 
+        setGameWord(randomWord(difficulties[(difficulties.indexOf(difficulty)===3 ? 0 : difficulties.indexOf(difficulty)+1)]))
+      }}
+      >
+        Difficulty: {difficulty}
+      </button>
     </>
   );
 }
