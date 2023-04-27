@@ -1,7 +1,7 @@
 import React from "react";
-const line1 = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O'];
-const line2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
-const line3 = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+const line1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O"];
+const line2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
+const line3 = ["Z", "X", "C", "V", "B", "N", "M"];
 
 // displays letter buttons for user to click and update with reseult (green/red)
 export default function Letters({
@@ -17,9 +17,10 @@ export default function Letters({
     setGuessedLetters({ ...guessedLetters, [letter]: isCorrect });
   };
   return (
-   <div>
-     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
+    <div>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
         {`
           body{
             display: flex;
@@ -30,30 +31,43 @@ export default function Letters({
           }
           `}
       </style>
-   
-    <div className="letters">
-      <div class="base">
 
-      <div class="line1">
-      {line1.map((letter) => (
-        <span onClick={() => handleClick(letter.toLowerCase())}>{letter}</span>
-      ))}
-    </div>
+      <div className="letters">
+        <div className="base">
+          <div className="line1">
+            {line1.map((letter) => (
+              <span
+                key={letter}
+                onClick={() => handleClick(letter.toLowerCase())}
+              >
+                {letter}
+              </span>
+            ))}
+          </div>
 
-    <div class="line2">
-      {line2.map((letter) => (
-        <span onClick={() => handleClick(letter.toLowerCase())}>{letter}</span>
-      ))}
-    </div>
+          <div className="line2">
+            {line2.map((letter) => (
+              <span
+                key={letter}
+                onClick={() => handleClick(letter.toLowerCase())}
+              >
+                {letter}
+              </span>
+            ))}
+          </div>
 
-    <div class="line3">
-      {line3.map((letter) => (
-        <span onClick={() => handleClick(letter.toLowerCase())}>{letter}</span>
-      ))}
-    </div>
-
+          <div className="line3">
+            {line3.map((letter) => (
+              <span
+                key={letter}
+                onClick={() => handleClick(letter.toLowerCase())}
+              >
+                {letter}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
     </div>
   );
 }

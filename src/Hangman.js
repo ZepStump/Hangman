@@ -33,17 +33,17 @@ export default function Hangman() {
         guessedLetters={guessedLetters}
         setGuessedLetters={setGuessedLetters}
       />
-      <div class="homepage-btn">
-        <div class="btn-wrapper">
-          <div class="btn-wrapper__container">
-            <div class="btn-inner">
-              <a class="btn-inner__text" href="/leaderboard">Leaderboard</a>
+      <div className="homepage-btn">
+        <div className="btn-wrapper">
+          <div className="btn-wrapper__container">
+            <div className="btn-inner">
+              <a className="btn-inner__text" href="/leaderboard">
+                Leaderboard
+              </a>
             </div>
           </div>
         </div>
       </div>
-      
-
 
       <CustomGame />
     </>
