@@ -19,6 +19,8 @@ import lives5 from "./images/1-lives.png";
 import lives6 from "./images/0-lives.png";
 
 export default function Hangman() {
+  // player name
+  const [player, setPlayer] = useState(null);
   // current active game word
   const [gameWord, setGameWord] = useState(null);
   // array of guessed letters
@@ -99,7 +101,7 @@ export default function Hangman() {
 
   return (
     <>
-      <Header />
+      <Header player={player} setPlayer={setPlayer} />
       <Visual image={image} setImage={setImage} />
       <center>
         <button
@@ -123,9 +125,15 @@ export default function Hangman() {
         </button>
       </center>
       <center>
-        {gameWord && <Word gameWord={gameWord} guessedLetters={guessedLetters} />}
+        {gameWord && (
+          <Word gameWord={gameWord} guessedLetters={guessedLetters} />
+        )}
         <p>{lives}</p>
-        <img className="Hangman-lives" alt="Lives Remaining" src={displayLives[image]} />
+        <img
+          className="Hangman-lives"
+          alt="Lives Remaining"
+          src={displayLives[image]}
+        />
         <p>{gameWon}</p>
         <GuessedLetters guessedLetters={guessedLetters} />
       </center>

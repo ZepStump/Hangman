@@ -1,3 +1,16 @@
+/* ***** HEADER ***** */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__player {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
 /* Leaderboard */
 .leaderboard-container {
   font-family: Arial, sans-serif;
@@ -241,7 +254,6 @@ div[class*="line"] + div[class*="line"] {
   color: green !important;
   /* add any other styles you want for correct letters */
 }
-
 
 div[class*="line"] span:not(:active) {
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.7);
