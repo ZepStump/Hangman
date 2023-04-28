@@ -333,7 +333,15 @@ div[class*="line"] span:active {
   white-space: pre;
 }
 
-/* ***** RESULT ***** */
+.Hangman-image {
+  border: 10px solid black;
+  height: 300px;
+  width: 300px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.27),
+    0 0 40px rgba(0, 0, 0, 0.06) inset;
+  border-radius: 5%;
+}
+
 .result {
   position: absolute;
   top: 0;
