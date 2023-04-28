@@ -34,13 +34,16 @@ body {
 }
 
 .game-top__right {
+  max-width: 50%;
   display: flex;
   flex-direction: column;
   gap: 2em;
 }
 
 .word {
-  white-space: pre;
+  /* word-wrap: break-word;
+  word-break: break-all; */
+  white-space: pre-wrap;
   margin: 2em;
   color: var(--accent);
   font-size: 2rem;

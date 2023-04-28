@@ -36,9 +36,6 @@ export default function Result({
     0
   );
 
-  console.log(difficulty);
-  console.log(difficulty.toLowerCase());
-
   // difficulty multiplier
   const difficultyMultiplier = () => {
     switch (difficulty.toLowerCase()) {
