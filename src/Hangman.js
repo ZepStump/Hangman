@@ -170,7 +170,7 @@ export default function Hangman() {
         </div> */}
 
         {displayCustomGame && <CustomGame />}
-        {gameWon | (lives === 0) && (
+        {(gameWon || lives === 0) && (
           <Result
             gameWord={gameWord}
             setGameWord={setGameWord}
