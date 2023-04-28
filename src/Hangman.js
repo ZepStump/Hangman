@@ -44,6 +44,7 @@ export default function Hangman() {
   const [gameWord, setGameWord] = useState(null);
   // array of guessed letters
   const [guessedLetters, setGuessedLetters] = useState({});
+  const [colors, setColors] = useState({});
 
   // Difficulty of the words
   const [difficulty, setDifficulty] = useState("Easy");
@@ -137,8 +138,13 @@ export default function Hangman() {
               <button
                 className="custom-game-form__btn"
                 onClick={() => {
+                  setColors();
                   changeDifficulty();
                   setGuessedLetters({});
+                  const line1Els = document.querySelectorAll("span");
+        line1Els.forEach((el) => {
+          el.style.backgroundColor = "#10131c";
+        });
                   setGameWord({
                     category: "Testing",
                     word: randomWord(
