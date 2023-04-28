@@ -8,6 +8,7 @@ export default function Letters({
   gameWord,
   guessedLetters,
   setGuessedLetters,
+  setColors,
 }) {
   // handle user clicking letter
   // handle user clicking letter
@@ -17,18 +18,20 @@ export default function Letters({
     console.log(isCorrect);
 
     setGuessedLetters({ ...guessedLetters, [letter]: isCorrect });
-
-    // update the key's color when it's wrong/correct
-    const querySelectorStr = `.line1 span[data-letter="${letter.toLowerCase()}"], .line2 span[data-letter="${letter.toLowerCase()}"], .line3 span[data-letter="${letter.toLowerCase()}"]`;
-    const spanEl = document.querySelector(querySelectorStr);
-
-    if (spanEl) {
-      if (isCorrect) {
-        spanEl.style.backgroundColor = "green";
-      } else {
-        spanEl.style.backgroundColor = "red";
+    setColors(letter,isCorrect);
+    function setColors(letter, isCorrect) {
+      const querySelectorStr = `.line1 span[data-letter="${letter.toLowerCase()}"], .line2 span[data-letter="${letter.toLowerCase()}"], .line3 span[data-letter="${letter.toLowerCase()}"]`;
+      const spanEl = document.querySelector(querySelectorStr);
+    
+      if (spanEl) {
+        if (isCorrect) {
+          spanEl.style.backgroundColor = "green";
+        } else {
+          spanEl.style.backgroundColor = "red";
+        }
       }
     }
+    
   };
 
   return (
