@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from 'react';
 import { randomWord } from "../RandomWord";
 
 export default function Result({
@@ -49,7 +50,33 @@ export default function Result({
       }
     }
   };
+  const [username, setUsername] = useState('');
 
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+  const c = (username) => {
+    // initialize the gameWon variable
+    var gameWon = "Lost";
+    var gameWin = 0;
+
+    // check if the game is won
+    if (gameWon === "Won!") {
+      // set the gameWin variable to 1
+      gameWin = 1;
+    } 
+    // if username is in the db, add score, wins
+    // alert(username + "'s score is " + score); 
+    alert(gameWin)
+
+    // if not, update the score,wins
+    
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    c(username);
+   
+  };
   // calc score
   const score = gameWon
     ? (lettersGuessed + lives) * difficultyMultiplier() * 2
@@ -70,9 +97,20 @@ export default function Result({
           <p>Final Score: {score}</p>
         </div>
 
-        <button className="play-btn" type="button" onClick={() => handlePlay()}>
+       
+
+        <div>
+
+          <input type="text\" placeholder="Your name" value={username} onChange={handleUsernameChange} />
+
+        <button type="submit" onClick={handleSubmit} >Submit </button>
+        
+
+    </div>
+    <button className="play-btn" type="button" onClick={() => handlePlay()}>
           Play again
-        </button>
+        </button> 
+       
       </div>
     </div>
   );

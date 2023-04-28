@@ -31,7 +31,7 @@ export default function CustomGame() {
       onSubmit={(e) => handleSubmit(e)}
     >
       <label className="custom-game-form__label">
-        Custom game:
+        {/* Custom game: */}
         <input
           className="custom-game-form__input"
           type="text"

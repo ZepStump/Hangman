@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { difficulties, randomWord } from "./RandomWord";
-import Header from "./components/Header";
+
 import Visual from "./components/Graphic";
 import Word from "./components/Word";
 import Letters from "./components/Letters";
@@ -20,7 +20,7 @@ import lives6 from "./images/0-lives.png";
 
 export default function Hangman() {
   // player name
-  const [player, setPlayer] = useState(null);
+  
   // current active game word
   const [gameWord, setGameWord] = useState(null);
   // array of guessed letters
@@ -101,7 +101,7 @@ export default function Hangman() {
 
   return (
     <>
-      <Header player={player} setPlayer={setPlayer} />
+      
       <Visual image={image} setImage={setImage} />
       <center>
         <button
@@ -142,7 +142,7 @@ export default function Hangman() {
         guessedLetters={guessedLetters}
         setGuessedLetters={setGuessedLetters}
       />
-      <div className="homepage-btn">
+      {/* <div className="homepage-btn">
         <div className="btn-wrapper">
           <div className="btn-wrapper__container">
             <div className="btn-inner">
@@ -152,9 +152,9 @@ export default function Hangman() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <CustomGame />
+      {/* <CustomGame /> */}
       {gameWon | (lives === 0) && (
         <Result
           gameWord={gameWord}

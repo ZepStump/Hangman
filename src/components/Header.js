@@ -9,7 +9,7 @@ export default function Header({ player, setPlayer }) {
   return (
     <header className="header">
       <h1 className="header__title">Welcome to Hangman!</h1>
-      <div className="header__player">
+      {/* <div className="header__player">
         <input
           className="player__input"
           type="text"
@@ -17,7 +17,7 @@ export default function Header({ player, setPlayer }) {
           onChange={(e) => handleChange(e)}
         />
         <FaUser />
-      </div>
+      </div> */}
     </header>
   );
 }
