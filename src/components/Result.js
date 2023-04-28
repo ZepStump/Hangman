@@ -16,6 +16,8 @@ export default function Result({
 }) {
   // has user entered name
   const [isPlayer, setIsPlayer] = useState(player.length > 0 ? true : false);
+  const [currScore, setScore] = useState(0)
+  const [currWins, setWins] = useState(0)
 
   // get new word and reset game
   const handlePlay = () => {
@@ -84,6 +86,8 @@ export default function Result({
             if (allPlayers[i].name == player) {
               currScore = allPlayers[i].score;
               currWins = allPlayers[i].wins;
+              setScore(allPlayers[i].score)
+              setWins(allPlayers[i].wins)
             }
           }
 
