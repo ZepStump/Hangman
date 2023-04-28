@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { useParams } from "react-router-dom";
 import { difficulties, randomWord } from "./RandomWord";
 import Header from "./components/Header";
 import Visual from "./components/Graphic";
@@ -29,10 +30,32 @@ export default function Hangman() {
   // Getting and Setting images
   const [image, setImage] = useState(0);
 
+  // get custom word if exists
+  const { customWord } = useParams();
+  console.log(customWord);
+  // console.log(`encodeUri: ${encodeURI(customWord)}`);
+
+  // encode string
+  const encodedWord = new TextEncoder().encode(customWord);
+  console.log(`encoded: ${encodedWord}`);
+  console.log(encodedWord);
+
+  // decode utf8 url param
+  const decodeParam = (encodedString) => {
+    const encodedArray = new Uint8Array(encodedString.split(","));
+    const decodedString = new TextDecoder().decode(encodedArray);
+
+    return decodedString;
+  };
+
   //   init game word
   useEffect(() => {
+    console.log("Checking for url param");
+    console.log(`URL param: ${customWord}`);
     console.log("Setting gameword to hangman");
-    setGameWord({ category: "Testing", word: randomWord(difficulty) });
+    customWord
+      ? setGameWord({ category: "Custom", word: decodeParam(customWord) })
+      : setGameWord({ category: "Testing", word: randomWord(difficulty) });
     setImage(0);
   }, []);
 

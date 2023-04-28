@@ -14,6 +14,15 @@ export default function CustomGame() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(`Custom game word: ${customWord}`);
+
+    // encode string
+    const encodedCustomWord = new TextEncoder().encode(customWord);
+    console.log(`encoded custom word: ${encodedCustomWord}`);
+    console.log(encodedCustomWord);
+
+    alert(
+      `Custom game word: ${customWord} Link: http://localhost:3000/Hangman/${encodedCustomWord}`
+    );
   };
   return (
     <form
@@ -28,9 +37,10 @@ export default function CustomGame() {
           type="text"
           value={customWord}
           onChange={(e) => handleChange(e)}
-          placeholder="Customize word.."></input>
+          placeholder="Customize word.."
+        ></input>
       </label>
-      
+
       <button
         className="custom-game-form__btn"
         type="submit"
@@ -38,7 +48,6 @@ export default function CustomGame() {
       >
         Get Link
       </button>
-
     </form>
   );
 }
