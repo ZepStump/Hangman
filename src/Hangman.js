@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { difficulties, randomWord } from "./RandomWord";
+import { randomWord } from "./RandomWord";
 import Header from "./components/Header";
 import Visual from "./components/Graphic";
 import Word from "./components/Word";
@@ -74,17 +74,9 @@ export default function Hangman() {
 
   // get custom word if exists
   const { customWord } = useParams();
-  console.log(customWord);
 
   // Diplaying tries remaining
   const displayLives = [lives0, lives1, lives2, lives3, lives4, lives5, lives6];
-
-  // console.log(`encodeUri: ${encodeURI(customWord)}`);
-
-  // encode string
-  const encodedWord = new TextEncoder().encode(customWord);
-  console.log(`encoded: ${encodedWord}`);
-  console.log(encodedWord);
 
   // decode utf8 url param
   const decodeParam = (encodedString) => {
@@ -94,23 +86,8 @@ export default function Hangman() {
     return decodedString;
   };
 
-  // // init player data
-  // useEffect(() => {
-  //   if (player) {
-  //     db.collection("users")
-  //       .doc(player)
-  //       .onSnapshot((snapshot) => setScore(snapshot.docs.map((doc) => ({
-  //         score: doc.data().score,
-  //         wins
-  //       }))));
-  //   }
-  // });
-
   //   init game word
   useEffect(() => {
-    console.log("Checking for url param");
-    console.log(`URL param: ${customWord}`);
-    console.log("Setting gameword to hangman");
     customWord
       ? setGameWord({ category: "Custom", word: decodeParam(customWord) })
       : setGameWord({ category: "Testing", word: randomWord(difficulty) });
@@ -197,18 +174,6 @@ export default function Hangman() {
           guessedLetters={guessedLetters}
           setGuessedLetters={setGuessedLetters}
         />
-        {/* previous leaderboard btn */}
-        {/* <div className="homepage-btn">
-          <div className="btn-wrapper">
-            <div className="btn-wrapper__container">
-              <div className="btn-inner">
-                <a className="btn-inner__text" href="/leaderboard">
-                  Leaderboard
-                </a>
-              </div>
-            </div>
-          </div>
-        </div> */}
 
         {displayCustomGame && (
           <CustomGame setDisplayCustomGame={setDisplayCustomGame} />

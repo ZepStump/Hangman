@@ -15,16 +15,9 @@ export default function CustomGame({ setDisplayCustomGame }) {
   // handle user submitting custom game
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`Custom game word: ${customWord}`);
 
     // encode string
     setEncodedCustomWord(new TextEncoder().encode(customWord.toLowerCase()));
-    console.log(`encoded custom word: ${encodedCustomWord}`);
-    console.log(encodedCustomWord);
-
-    // alert(
-    //   `Custom game word: ${customWord} Link: http://localhost:3000/Hangman/${encodedCustomWord}`
-    // );
   };
 
   // handle close

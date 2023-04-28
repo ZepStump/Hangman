@@ -94,7 +94,6 @@ const Word = {
     "triathlon",
     "bobsledding",
     "figure skating",
-    "judo",
     "snowboarding",
     "water polo",
     "rowing",

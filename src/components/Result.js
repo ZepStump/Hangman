@@ -16,8 +16,8 @@ export default function Result({
 }) {
   // has user entered name
   const [isPlayer, setIsPlayer] = useState(player.length > 0 ? true : false);
-  const [currScore, setScore] = useState(0)
-  const [currWins, setWins] = useState(0)
+  const [currScore, setScore] = useState(0);
+  const [currWins, setWins] = useState(0);
 
   // get new word and reset game
   const handlePlay = () => {
@@ -83,8 +83,8 @@ export default function Result({
             if (allPlayers[i].name == player) {
               currScore = allPlayers[i].score;
               currWins = allPlayers[i].wins;
-              setScore(allPlayers[i].score)
-              setWins(allPlayers[i].wins)
+              setScore(allPlayers[i].score);
+              setWins(allPlayers[i].wins);
             }
           }
 
@@ -100,7 +100,8 @@ export default function Result({
   }, [score, player]);
 
   // handle add score with new player name
-  const handleAddScore = () => {
+  const handleAddScore = (e) => {
+    setPlayer(e.target.name.value);
     setIsPlayer(true);
   };
 
@@ -108,22 +109,22 @@ export default function Result({
     <div className="result">
       <div className="result__container">
         {!isPlayer && (
-          <div className="result__request-player">
+          <form
+            className="result__request-player"
+            onSubmit={(e) => handleAddScore(e)}
+          >
             <h3>Please enter a name to add your results to the leaderboard!</h3>
             <input
               className="result__player-input"
               type="text"
-              value={player}
-              onChange={(e) => setPlayer(e.target.value)}
+              id="name"
+              name="name"
+              placeholder="name"
             />
-            <button
-              className="result__btn"
-              type="button"
-              onClick={handleAddScore}
-            >
+            <button className="result__btn" type="submit">
               Add score
             </button>
-          </div>
+          </form>
         )}
         <h2 className="result__title">You {gameWon ? "Won!" : "Lost."}</h2>
         <div>
