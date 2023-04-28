@@ -1,27 +1,21 @@
 import { useState, useEffect } from 'react';
+import { db } from "../firebase-setup/firebase"
 
 function Leaderboard() {
   const [users, setUsers] = useState({});
   const [numEntities, setNumEntities] = useState(10);
 
   useEffect(() => {
-    setUsers({
-      user1: { score: 100, wins: 10 },
-      user2: { score: 95, wins: 8 },
-      user3: { score: 200, wins: 5 },
-      user4: { score: 75, wins: 3 },
-      user5: { score: 70, wins: 2 },
-      user6: { score: 65, wins: 1 },
-      user7: { score: 60, wins: 0 },
-      user8: { score: 55, wins: 0 },
-      user9: { score: 50, wins: 0 },
-      user10: { score: 45, wins: 0 },
-      user11: { score: 40, wins: 0 },
-      user12: { score: 35, wins: 0 },
-      user13: { score: 30, wins: 0 },
-      user14: { score: 25, wins: 0 },
-      user15: { score: 20, wins: 0 }
-    });
+    db.collection("users")
+        .onSnapshot((snapshot) =>
+          setUsers(
+            snapshot.docs.map((doc) => ({
+              score: doc.data().score,
+              wins: doc.data().wins
+            }))
+          )
+        );
+    
   }, []);
 
   // sort by score

@@ -10,7 +10,17 @@ import CustomGame from "./components/CustomGame";
 import GuessedLetters from "./components/GuessedLetters";
 import Result from "./components/Result";
 
+import lives0 from "./images/6-lives.png";
+import lives1 from "./images/5-lives.png";
+import lives2 from "./images/4-lives.png";
+import lives3 from "./images/3-lives.png";
+import lives4 from "./images/2-lives.png";
+import lives5 from "./images/1-lives.png";
+import lives6 from "./images/0-lives.png";
+
 export default function Hangman() {
+  // player name
+  const [player, setPlayer] = useState(null);
   // current active game word
   const [gameWord, setGameWord] = useState(null);
   // array of guessed letters
@@ -29,6 +39,9 @@ export default function Hangman() {
 
   // Getting and Setting images
   const [image, setImage] = useState(0);
+
+  // Diplaying tries remaining
+  const displayLives = [lives0, lives1, lives2, lives3, lives4, lives5, lives6];
 
   // get custom word if exists
   const { customWord } = useParams();
@@ -88,12 +101,42 @@ export default function Hangman() {
 
   return (
     <>
-      <Header />
+      <Header player={player} setPlayer={setPlayer} />
       <Visual image={image} setImage={setImage} />
-      {gameWord && <Word gameWord={gameWord} guessedLetters={guessedLetters} />}
-      <p>{lives}</p>
-      <p>{gameWon}</p>
-      <GuessedLetters guessedLetters={guessedLetters} />
+      <center>
+        <button
+          className="custom-game-form__btn"
+          onClick={() => {
+            changeDifficulty();
+            setGuessedLetters({});
+            setGameWord({
+              category: "Testing",
+              word: randomWord(
+                difficulties[
+                  difficulties.indexOf(difficulty) === 3
+                    ? 0
+                    : difficulties.indexOf(difficulty) + 1
+                ]
+              ),
+            });
+          }}
+        >
+          Difficulty: {difficulty}
+        </button>
+      </center>
+      <center>
+        {gameWord && (
+          <Word gameWord={gameWord} guessedLetters={guessedLetters} />
+        )}
+        <p>{lives}</p>
+        <img
+          className="Hangman-lives"
+          alt="Lives Remaining"
+          src={displayLives[image]}
+        />
+        <p>{gameWon}</p>
+        <GuessedLetters guessedLetters={guessedLetters} />
+      </center>
       <Letters
         gameWord={gameWord}
         guessedLetters={guessedLetters}
@@ -112,25 +155,6 @@ export default function Hangman() {
       </div>
 
       <CustomGame />
-      <button
-        className="custom-game-form__btn"
-        onClick={() => {
-          changeDifficulty();
-          setGuessedLetters({});
-          setGameWord({
-            category: "Testing",
-            word: randomWord(
-              difficulties[
-                difficulties.indexOf(difficulty) === 3
-                  ? 0
-                  : difficulties.indexOf(difficulty) + 1
-              ]
-            ),
-          });
-        }}
-      >
-        Difficulty: {difficulty}
-      </button>
       {gameWon | (lives === 0) && (
         <Result
           gameWord={gameWord}

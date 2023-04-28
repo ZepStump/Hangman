@@ -1,5 +1,5 @@
 import React from "react";
-const line1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O"];
+const line1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
 const line2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
 const line3 = ["Z", "X", "C", "V", "B", "N", "M"];
 
@@ -15,27 +15,28 @@ export default function Letters({
     console.log(`Clicked: ${letter}`);
     const isCorrect = gameWord.word.includes(letter);
     console.log(isCorrect);
-  
+
     setGuessedLetters({ ...guessedLetters, [letter]: isCorrect });
-    
+
     // update the key's color when it's wrong/correct
     const querySelectorStr = `.line1 span[data-letter="${letter.toLowerCase()}"], .line2 span[data-letter="${letter.toLowerCase()}"], .line3 span[data-letter="${letter.toLowerCase()}"]`;
     const spanEl = document.querySelector(querySelectorStr);
-    
+
     if (spanEl) {
       if (isCorrect) {
-        spanEl.style.backgroundColor = 'green';
+        spanEl.style.backgroundColor = "green";
       } else {
-        spanEl.style.backgroundColor = 'red';
+        spanEl.style.backgroundColor = "red";
       }
     }
   };
-  
- return (
-    <div>      
+
+  return (
+    <div>
       <style>
-      @import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
-      {`
+        @import
+        url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
+        {`
           body{
             display: flex;            justify-content: center;
             align-items: center;
@@ -45,7 +46,7 @@ export default function Letters({
           color: #000;
         }
         `}
-    </style>
+      </style>
 
       <div className="letters">
         <div className="base">
@@ -86,5 +87,6 @@ export default function Letters({
           </div>
         </div>
       </div>
-    </div>);
+    </div>
+  );
 }

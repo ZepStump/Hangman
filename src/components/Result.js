@@ -16,12 +16,11 @@ export default function Result({
     setGuessedLetters({});
 
     // change all color back for the key on the keyboard back
-    const line1Els = document.querySelectorAll('span');
+    const line1Els = document.querySelectorAll("span");
     line1Els.forEach((el) => {
-      el.style.backgroundColor = '#10131c';
+      el.style.backgroundColor = "#10131c";
     });
   };
-  
 
   // calc letters guessed correctly
   const lettersGuessed = Object.values(guessedLetters).reduce(
@@ -30,8 +29,31 @@ export default function Result({
     0
   );
 
+  // difficulty multiplier
+  const difficultyMultiplier = () => {
+    switch (difficulty.toLowerCase) {
+      case "easy": {
+        return 1;
+      }
+      case "medium": {
+        return 2;
+      }
+      case "hard": {
+        return 3;
+      }
+      case "quotes": {
+        return 5;
+      }
+      default: {
+        return 1;
+      }
+    }
+  };
+
   // calc score
-  const score = gameWon ? (lettersGuessed + lives) * 2 : lettersGuessed;
+  const score = gameWon
+    ? (lettersGuessed + lives) * difficultyMultiplier() * 2
+    : lettersGuessed + difficultyMultiplier();
 
   return (
     <div className="result">
@@ -41,7 +63,10 @@ export default function Result({
           <p>Word: {gameWord.word}</p>
           <p>Letters Guessed: {lettersGuessed}</p>
           <p>Extra Lives: {lives}</p>
-          <p>Win multiplier: {gameWon ? "2x" : "0x"}</p>
+          <p>Win multiplier: {gameWon ? "x2" : "none"}</p>
+          <p>
+            Difficulty multiplier: {difficulty} x{difficultyMultiplier()}
+          </p>
           <p>Final Score: {score}</p>
         </div>
 
