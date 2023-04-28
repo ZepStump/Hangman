@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { randomWord } from "../RandomWord";
-import { db } from "../firebase-setup/firebase"
+import { db } from "../firebase-setup/firebase";
 
 export default function Result({
   gameWord,
@@ -36,9 +36,12 @@ export default function Result({
     0
   );
 
+  console.log(difficulty);
+  console.log(difficulty.toLowerCase());
+
   // difficulty multiplier
   const difficultyMultiplier = () => {
-    switch (difficulty.toLowerCase) {
+    switch (difficulty.toLowerCase()) {
       case "easy": {
         return 1;
       }
@@ -62,37 +65,35 @@ export default function Result({
     ? (lettersGuessed + lives) * difficultyMultiplier() * 2
     : lettersGuessed * difficultyMultiplier();
 
-
   useEffect(() => {
-    console.log(allPlayers)
-    if (allPlayers != null) { 
-    if (score > 0) {
-      var won = 0
-      if (gameWon) {
-        won = 1
-      }
-
-      //Get the scores for the user
-      if (player != "") {
-        var currScore = 0
-        var currWins = 0
-        console.log(allPlayers)
-        for (let i = 0; i < allPlayers.length; i++) {
-          console.log(allPlayers)
-          if (allPlayers[i].name == player) {
-            currScore = allPlayers[i].score
-            currWins = allPlayers[i].wins
-          }
+    console.log(allPlayers);
+    if (allPlayers != null) {
+      if (score > 0) {
+        var won = 0;
+        if (gameWon) {
+          won = 1;
         }
 
-        db
-          .collection("users")
-          .doc(player)
-          .set({
-            score: score + currScore,
-            wins: won + currWins
-          });
-      }
+        //Get the scores for the user
+        if (player != "") {
+          var currScore = 0;
+          var currWins = 0;
+          console.log(allPlayers);
+          for (let i = 0; i < allPlayers.length; i++) {
+            console.log(allPlayers);
+            if (allPlayers[i].name == player) {
+              currScore = allPlayers[i].score;
+              currWins = allPlayers[i].wins;
+            }
+          }
+
+          db.collection("users")
+            .doc(player)
+            .set({
+              score: score + currScore,
+              wins: won + currWins,
+            });
+        }
       }
     }
   }, [score, player]);
