@@ -1,3 +1,4 @@
+
 /* Home */
 .home-container {
   background-color: #eee;
@@ -34,18 +35,50 @@
   font-size: 3em;
 }
 
+=======
+/* ***** BODY ***** */
+body {
+  background: #00bcd4;
+}
+
+/* ***** GAME ***** */
+.game-container {
+  position: relative;
+  margin: auto;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4em;
+}
 
 /* ***** HEADER ***** */
 .header {
+  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1000px;
+  padding: 3em;
 }
 
 .header__player {
   display: flex;
   align-items: center;
   gap: 1em;
+}
+
+.header__btn {
+  color: #00bcd4;
+  background-color: #2f3336;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.header__btn:hover {
+  cursor: pointer;
+  background-color: #4d5458;
 }
 
 /* Leaderboard */
@@ -61,7 +94,8 @@
 }
 
 .leaderboard-table {
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
+  border-radius: 10px;
   width: 100%;
 }
 
@@ -199,6 +233,18 @@
 }
 
 /* customgame */
+.custom-game-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+.custom-game-form__title {
+  color: white;
+}
 
 .custom-game-form__input {
   border: 3px solid #15b5e2;
@@ -257,6 +303,7 @@ span {
   user-select: none;
 }
 .base {
+  margin: auto;
   border-radius: 10px;
   background: #272b2c;
   display: flex;
@@ -395,15 +442,15 @@ div[class*="line"] span:active {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100dvh;
-  width: 100vw;
-  background-color: rgba(180, 236, 238, 0.5);
+  height: 100%;
+  width: 100%;
+  background-color: rgba(49, 52, 52, 0.95);
+  border: none;
+  border-radius: 10px;
 }
 
 .result__container {
-  position: relative;
   margin: auto;
-  top: 20%;
   padding: 2em;
   border: none;
   border-radius: 1em;
@@ -412,5 +459,6 @@ div[class*="line"] span:active {
   flex-direction: column;
   gap: 1em;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.81);
+  color: white;
+  background-color: black;
 }
