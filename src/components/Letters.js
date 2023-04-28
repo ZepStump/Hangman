@@ -73,20 +73,3 @@ export default function Letters({
     </div>
   );
 }
-
-// <div>
-
-/* <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
-        {`
-          body{
-            display: flex;            justify-content: center;
-            align-items: center;
-            height: 97vh;
-            background: #00BCD4;          }
-         {
-          color: #000;
-        }
-        `}
-      </style> */

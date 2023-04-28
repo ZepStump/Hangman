@@ -79,17 +79,3 @@ function Leaderboard({ setDisplayLeaderboard }) {
 }
 
 export default Leaderboard;
-
-// this was previous styling
-
-/* <style>
-        @import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
-        {`
-          body{
-            background-color: #10131c;
-            background-size: cover;
-            background-image: url('https://cdn.vectorstock.com/i/1000x1000/49/68/black-and-blue-background-design-template-vector-37054968.webp');
-            font-family: 'Roboto', sans-serif;
-          }
-          `}
-      </style> */
