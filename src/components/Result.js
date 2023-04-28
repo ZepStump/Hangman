@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { randomWord } from "../RandomWord";
+import { db } from "../firebase-setup/firebase"
 
 export default function Result({
   gameWord,
@@ -11,6 +12,7 @@ export default function Result({
   difficulty,
   player,
   setPlayer,
+  allPlayers,
 }) {
   // has user entered name
   const [isPlayer, setIsPlayer] = useState(player.length > 0 ? true : false);
@@ -59,6 +61,41 @@ export default function Result({
   const score = gameWon
     ? (lettersGuessed + lives) * difficultyMultiplier() * 2
     : lettersGuessed * difficultyMultiplier();
+
+
+  useEffect(() => {
+    console.log(allPlayers)
+    if (allPlayers != null) { 
+    if (score > 0) {
+      var won = 0
+      if (gameWon) {
+        won = 1
+      }
+
+      //Get the scores for the user
+      if (player != "") {
+        var currScore = 0
+        var currWins = 0
+        console.log(allPlayers)
+        for (let i = 0; i < allPlayers.length; i++) {
+          console.log(allPlayers)
+          if (allPlayers[i].name == player) {
+            currScore = allPlayers[i].score
+            currWins = allPlayers[i].wins
+          }
+        }
+
+        db
+          .collection("users")
+          .doc(player)
+          .set({
+            score: score + currScore,
+            wins: won + currWins
+          });
+      }
+      }
+    }
+  }, [score]);
 
   // handle add score with new player name
   const handleAddScore = () => {

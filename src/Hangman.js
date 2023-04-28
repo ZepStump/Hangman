@@ -19,7 +19,23 @@ import lives4 from "./images/2-lives.png";
 import lives5 from "./images/1-lives.png";
 import lives6 from "./images/0-lives.png";
 
+import { db } from "./firebase-setup/firebase"
+
 export default function Hangman() {
+  //db
+  const [allPlayers, setAllPlayers] = useState([]);
+  useEffect(() => {
+    db.collection("users")
+        .onSnapshot((snapshot) =>
+          setAllPlayers(
+            snapshot.docs.map((doc) => ({
+              name: doc.id,
+              score: doc.data().score,
+              wins: doc.data().wins,
+            }))
+          )
+        );
+  }, [])
   // player name
   const [player, setPlayer] = useState("");
   // current active game word
@@ -172,6 +188,7 @@ export default function Hangman() {
         {displayCustomGame && <CustomGame />}
         {(gameWon || lives === 0) && (
           <Result
+            allPlayers={allPlayers}
             gameWord={gameWord}
             setGameWord={setGameWord}
             guessedLetters={guessedLetters}
