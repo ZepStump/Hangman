@@ -16,7 +16,9 @@ export default function CustomGame() {
     console.log(`Custom game word: ${customWord}`);
 
     // encode string
-    const encodedCustomWord = new TextEncoder().encode(customWord);
+    const encodedCustomWord = new TextEncoder().encode(
+      customWord.toLowerCase()
+    );
     console.log(`encoded custom word: ${encodedCustomWord}`);
     console.log(encodedCustomWord);
 
@@ -25,29 +27,34 @@ export default function CustomGame() {
     );
   };
   return (
-    <form
-      className="custom-game-form"
-      id="customGame"
-      onSubmit={(e) => handleSubmit(e)}
-    >
-      <label className="custom-game-form__label">
-        Custom game:
-        <input
-          className="custom-game-form__input"
-          type="text"
-          value={customWord}
-          onChange={(e) => handleChange(e)}
-          placeholder="Customize word.."
-        ></input>
-      </label>
-
-      <button
-        className="custom-game-form__btn"
-        type="submit"
-        htmlFor="custom-game-form"
+    <div className="result">
+      <form
+        className="custom-game-form"
+        id="customGame"
+        onSubmit={(e) => handleSubmit(e)}
       >
-        Get Link
-      </button>
-    </form>
+        <h1 className="custom-game-form__title">
+          Create a game with a custom word to challange your friends!
+        </h1>
+        <label className="custom-game-form__label">
+          Custom game:
+          <input
+            className="custom-game-form__input"
+            type="text"
+            value={customWord}
+            onChange={(e) => handleChange(e)}
+            placeholder="Customize word.."
+          ></input>
+        </label>
+
+        <button
+          className="custom-game-form__btn"
+          type="submit"
+          htmlFor="custom-game-form"
+        >
+          Get Link
+        </button>
+      </form>
+    </div>
   );
 }

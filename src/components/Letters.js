@@ -32,8 +32,51 @@ export default function Letters({
   };
 
   return (
-    <div>
-      <style>
+    <div className="letters">
+      <div className="base">
+        <div className="line1">
+          {line1.map((letter) => (
+            <span
+              key={letter}
+              data-letter={letter.toLowerCase()}
+              onClick={() => handleClick(letter.toLowerCase())}
+            >
+              {letter}
+            </span>
+          ))}
+        </div>
+
+        <div className="line2">
+          {line2.map((letter) => (
+            <span
+              key={letter}
+              data-letter={letter.toLowerCase()}
+              onClick={() => handleClick(letter.toLowerCase())}
+            >
+              {letter}
+            </span>
+          ))}
+        </div>
+
+        <div className="line3">
+          {line3.map((letter) => (
+            <span
+              key={letter}
+              data-letter={letter.toLowerCase()}
+              onClick={() => handleClick(letter.toLowerCase())}
+            >
+              {letter}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// <div>
+
+/* <style>
         @import
         url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
         {`
@@ -46,47 +89,4 @@ export default function Letters({
           color: #000;
         }
         `}
-      </style>
-
-      <div className="letters">
-        <div className="base">
-          <div className="line1">
-            {line1.map((letter) => (
-              <span
-                key={letter}
-                data-letter={letter.toLowerCase()}
-                onClick={() => handleClick(letter.toLowerCase())}
-              >
-                {letter}
-              </span>
-            ))}
-          </div>
-
-          <div className="line2">
-            {line2.map((letter) => (
-              <span
-                key={letter}
-                data-letter={letter.toLowerCase()}
-                onClick={() => handleClick(letter.toLowerCase())}
-              >
-                {letter}
-              </span>
-            ))}
-          </div>
-
-          <div className="line3">
-            {line3.map((letter) => (
-              <span
-                key={letter}
-                data-letter={letter.toLowerCase()}
-                onClick={() => handleClick(letter.toLowerCase())}
-              >
-                {letter}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+      </style> */

@@ -9,6 +9,7 @@ import Letters from "./components/Letters";
 import CustomGame from "./components/CustomGame";
 import GuessedLetters from "./components/GuessedLetters";
 import Result from "./components/Result";
+import Leaderboard from "./components/Leaderboard";
 
 import lives0 from "./images/6-lives.png";
 import lives1 from "./images/5-lives.png";
@@ -20,7 +21,7 @@ import lives6 from "./images/0-lives.png";
 
 export default function Hangman() {
   // player name
-  const [player, setPlayer] = useState(null);
+  const [player, setPlayer] = useState("");
   // current active game word
   const [gameWord, setGameWord] = useState(null);
   // array of guessed letters
@@ -40,12 +41,19 @@ export default function Hangman() {
   // Getting and Setting images
   const [image, setImage] = useState(0);
 
-  // Diplaying tries remaining
-  const displayLives = [lives0, lives1, lives2, lives3, lives4, lives5, lives6];
+  // show leaderbaord
+  const [displayLeaderboard, setDisplayLeaderboard] = useState(false);
+
+  // show custom game form
+  const [displayCustomGame, setDisplayCustomGame] = useState(false);
 
   // get custom word if exists
   const { customWord } = useParams();
   console.log(customWord);
+
+  // Diplaying tries remaining
+  const displayLives = [lives0, lives1, lives2, lives3, lives4, lives5, lives6];
+
   // console.log(`encodeUri: ${encodeURI(customWord)}`);
 
   // encode string
@@ -101,71 +109,80 @@ export default function Hangman() {
 
   return (
     <>
-      <Header player={player} setPlayer={setPlayer} />
-      <Visual image={image} setImage={setImage} />
-      <center>
-        <button
-          className="custom-game-form__btn"
-          onClick={() => {
-            changeDifficulty();
-            setGuessedLetters({});
-            setGameWord({
-              category: "Testing",
-              word: randomWord(
-                difficulties[
-                  difficulties.indexOf(difficulty) === 3
-                    ? 0
-                    : difficulties.indexOf(difficulty) + 1
-                ]
-              ),
-            });
-          }}
-        >
-          Difficulty: {difficulty}
-        </button>
-      </center>
-      <center>
-        {gameWord && (
-          <Word gameWord={gameWord} guessedLetters={guessedLetters} />
-        )}
-        <p>{lives}</p>
-        <img
-          className="Hangman-lives"
-          alt="Lives Remaining"
-          src={displayLives[image]}
-        />
-        <p>{gameWon}</p>
-        <GuessedLetters guessedLetters={guessedLetters} />
-      </center>
-      <Letters
-        gameWord={gameWord}
-        guessedLetters={guessedLetters}
-        setGuessedLetters={setGuessedLetters}
+      <Header
+        player={player}
+        setPlayer={setPlayer}
+        setDisplayLeaderboard={setDisplayLeaderboard}
+        setDisplayCustomGame={setDisplayCustomGame}
       />
-      <div className="homepage-btn">
-        <div className="btn-wrapper">
-          <div className="btn-wrapper__container">
-            <div className="btn-inner">
-              <a className="btn-inner__text" href="/leaderboard">
-                Leaderboard
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <CustomGame />
-      {gameWon | (lives === 0) && (
-        <Result
+      <div className="game-container">
+        <Visual image={image} setImage={setImage} />
+        <center>
+          <button
+            className="custom-game-form__btn"
+            onClick={() => {
+              changeDifficulty();
+              setGuessedLetters({});
+              setGameWord({
+                category: "Testing",
+                word: randomWord(
+                  difficulties[
+                    difficulties.indexOf(difficulty) === 3
+                      ? 0
+                      : difficulties.indexOf(difficulty) + 1
+                  ]
+                ),
+              });
+            }}
+          >
+            Difficulty: {difficulty}
+          </button>
+        </center>
+        <center>
+          {gameWord && (
+            <Word gameWord={gameWord} guessedLetters={guessedLetters} />
+          )}
+          <p>{lives}</p>
+          <img
+            className="Hangman-lives"
+            alt="Lives Remaining"
+            src={displayLives[image]}
+          />
+          <p>{gameWon}</p>
+          <GuessedLetters guessedLetters={guessedLetters} />
+        </center>
+        <Letters
           gameWord={gameWord}
-          setGameWord={setGameWord}
           guessedLetters={guessedLetters}
           setGuessedLetters={setGuessedLetters}
-          gameWon={gameWon}
-          lives={lives}
-          difficulty={difficulty}
         />
-      )}
+        {/* previous leaderboard btn */}
+        {/* <div className="homepage-btn">
+          <div className="btn-wrapper">
+            <div className="btn-wrapper__container">
+              <div className="btn-inner">
+                <a className="btn-inner__text" href="/leaderboard">
+                  Leaderboard
+                </a>
+              </div>
+            </div>
+          </div>
+        </div> */}
+
+        {displayCustomGame && <CustomGame />}
+        {gameWon | (lives === 0) && (
+          <Result
+            gameWord={gameWord}
+            setGameWord={setGameWord}
+            guessedLetters={guessedLetters}
+            setGuessedLetters={setGuessedLetters}
+            gameWon={gameWon}
+            lives={lives}
+            difficulty={difficulty}
+          />
+        )}
+        {displayLeaderboard && <Leaderboard />}
+      </div>
     </>
   );
 }
