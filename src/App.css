@@ -341,3 +341,27 @@ div[class*="line"] span:active {
     0 0 40px rgba(0, 0, 0, 0.06) inset;
   border-radius: 5%;
 }
+
+.result {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  width: 100vw;
+  background-color: rgba(180, 236, 238, 0.5);
+}
+
+.result__container {
+  position: relative;
+  margin: auto;
+  top: 20%;
+  padding: 2em;
+  border: none;
+  border-radius: 1em;
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.81);
+}
