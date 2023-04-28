@@ -10,9 +10,5 @@ export default function Word({ gameWord, guessedLetters }) {
     guessedLetters[letter] ? letter : letter === " " ? "  " : "_"
   );
 
-  return (
-    <div className="word">
-      {gameWord.category}: {gameStateList.join(" ")}
-    </div>
-  );
+  return <div className="word">{gameStateList.join(" ")}</div>;
 }

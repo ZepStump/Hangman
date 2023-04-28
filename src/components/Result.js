@@ -69,16 +69,16 @@ export default function Result({
     <div className="result">
       <div className="result__container">
         {!isPlayer && (
-          <div>
+          <div className="result__request-player">
             <h3>Please enter a name to add your results to the leaderboard!</h3>
             <input
-              className="player__input"
+              className="result__player-input"
               type="text"
               value={player}
               onChange={(e) => setPlayer(e.target.value)}
             />
             <button
-              className="result__add-btn"
+              className="result__btn"
               type="button"
               onClick={handleAddScore}
             >
@@ -86,7 +86,7 @@ export default function Result({
             </button>
           </div>
         )}
-        <h2>You {gameWon ? "Won!" : "Lost."}</h2>
+        <h2 className="result__title">You {gameWon ? "Won!" : "Lost."}</h2>
         <div>
           <p>Word: {gameWord.word}</p>
           <p>Letters Guessed: {lettersGuessed}</p>
@@ -98,7 +98,11 @@ export default function Result({
           <p>Final Score: {score}</p>
         </div>
 
-        <button className="play-btn" type="button" onClick={() => handlePlay()}>
+        <button
+          className="result__btn"
+          type="button"
+          onClick={() => handlePlay()}
+        >
           Play again
         </button>
       </div>

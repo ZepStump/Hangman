@@ -5,7 +5,6 @@ import Header from "./components/Header";
 import Visual from "./components/Graphic";
 import Word from "./components/Word";
 import Letters from "./components/Letters";
-// import Leaderboard from "./components/Leaderboard";
 import CustomGame from "./components/CustomGame";
 import GuessedLetters from "./components/GuessedLetters";
 import Result from "./components/Result";
@@ -22,6 +21,11 @@ import lives6 from "./images/0-lives.png";
 export default function Hangman() {
   // player name
   const [player, setPlayer] = useState("");
+  // current player score
+  const [score, setScore] = useState({
+    score: 0,
+    wins: 0,
+  });
   // current active game word
   const [gameWord, setGameWord] = useState(null);
   // array of guessed letters
@@ -68,6 +72,18 @@ export default function Hangman() {
 
     return decodedString;
   };
+
+  // // init player data
+  // useEffect(() => {
+  //   if (player) {
+  //     db.collection("users")
+  //       .doc(player)
+  //       .onSnapshot((snapshot) => setScore(snapshot.docs.map((doc) => ({
+  //         score: doc.data().score,
+  //         wins
+  //       }))));
+  //   }
+  // });
 
   //   init game word
   useEffect(() => {
@@ -116,41 +132,45 @@ export default function Hangman() {
         setDisplayCustomGame={setDisplayCustomGame}
       />
       <div className="game-container">
-        <Visual image={image} setImage={setImage} />
-        <center>
-          <button
-            className="custom-game-form__btn"
-            onClick={() => {
-              changeDifficulty();
-              setGuessedLetters({});
-              setGameWord({
-                category: "Testing",
-                word: randomWord(
-                  difficulties[
-                    difficulties.indexOf(difficulty) === 3
-                      ? 0
-                      : difficulties.indexOf(difficulty) + 1
-                  ]
-                ),
-              });
-            }}
-          >
-            Difficulty: {difficulty}
-          </button>
-        </center>
-        <center>
-          {gameWord && (
-            <Word gameWord={gameWord} guessedLetters={guessedLetters} />
-          )}
-          <p>{lives}</p>
-          <img
-            className="Hangman-lives"
-            alt="Lives Remaining"
-            src={displayLives[image]}
-          />
-          <p>{gameWon}</p>
-          <GuessedLetters guessedLetters={guessedLetters} />
-        </center>
+        <div className="game-top">
+          <Visual image={image} setImage={setImage} />
+          <div className="game-top__right">
+            <center>
+              <button
+                className="custom-game-form__btn"
+                onClick={() => {
+                  changeDifficulty();
+                  setGuessedLetters({});
+                  setGameWord({
+                    category: "Testing",
+                    word: randomWord(
+                      difficulties[
+                        difficulties.indexOf(difficulty) === 3
+                          ? 0
+                          : difficulties.indexOf(difficulty) + 1
+                      ]
+                    ),
+                  });
+                }}
+              >
+                {difficulty}
+              </button>
+            </center>
+            <img
+              className="Hangman-lives"
+              alt="Lives Remaining"
+              src={displayLives[image]}
+            />
+            <center>
+              {gameWord && (
+                <Word gameWord={gameWord} guessedLetters={guessedLetters} />
+              )}
+
+              <p>{gameWon}</p>
+            </center>
+          </div>
+        </div>
+
         <Letters
           gameWord={gameWord}
           guessedLetters={guessedLetters}
@@ -169,7 +189,9 @@ export default function Hangman() {
           </div>
         </div> */}
 
-        {displayCustomGame && <CustomGame />}
+        {displayCustomGame && (
+          <CustomGame setDisplayCustomGame={setDisplayCustomGame} />
+        )}
         {(gameWon || lives === 0) && (
           <Result
             gameWord={gameWord}

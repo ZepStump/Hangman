@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
 // form to create custom game
-export default function CustomGame() {
+export default function CustomGame({ setDisplayCustomGame }) {
   // custom word controlled input
   const [customWord, setCustomWord] = useState("");
+  // encoded custom word
+  const [encodedCustomWord, setEncodedCustomWord] = useState(null);
 
   // handle user input change
   const handleChange = (e) => {
@@ -16,16 +18,20 @@ export default function CustomGame() {
     console.log(`Custom game word: ${customWord}`);
 
     // encode string
-    const encodedCustomWord = new TextEncoder().encode(
-      customWord.toLowerCase()
-    );
+    setEncodedCustomWord(new TextEncoder().encode(customWord.toLowerCase()));
     console.log(`encoded custom word: ${encodedCustomWord}`);
     console.log(encodedCustomWord);
 
-    alert(
-      `Custom game word: ${customWord} Link: http://localhost:3000/Hangman/${encodedCustomWord}`
-    );
+    // alert(
+    //   `Custom game word: ${customWord} Link: http://localhost:3000/Hangman/${encodedCustomWord}`
+    // );
   };
+
+  // handle close
+  const handleClose = () => {
+    setDisplayCustomGame(false);
+  };
+
   return (
     <div className="result">
       <form
@@ -33,11 +39,10 @@ export default function CustomGame() {
         id="customGame"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <h1 className="custom-game-form__title">
+        <h2 className="custom-game-form__title">
           Create a game with a custom word to challange your friends!
-        </h1>
+        </h2>
         <label className="custom-game-form__label">
-          Custom game:
           <input
             className="custom-game-form__input"
             type="text"
@@ -53,6 +58,14 @@ export default function CustomGame() {
           htmlFor="custom-game-form"
         >
           Get Link
+        </button>
+        {encodedCustomWord && (
+          <a
+            href={`http://localhost:3000/Hangman/${encodedCustomWord}`}
+          >{`http://localhost:3000/Hangman/${encodedCustomWord}`}</a>
+        )}
+        <button className="result__btn" type="button" onClick={handleClose}>
+          Close
         </button>
       </form>
     </div>

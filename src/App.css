@@ -1,6 +1,16 @@
+/* VARIABLES */
+:root {
+  --main: rgb(0, 0, 0);
+  --main-accent: rgb(34, 39, 42);
+  --main-transparent: rgba(26, 29, 31, 0.9);
+  --accent: rgb(0, 200, 255);
+  --accent-dark: rgb(0, 147, 188);
+}
+
 /* ***** BODY ***** */
 body {
-  background: #00bcd4;
+  background: var(--main);
+  font-family: arial, sans-serif;
 }
 
 /* ***** GAME ***** */
@@ -11,9 +21,38 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4em;
+  gap: 4em;
+  padding: 4em 2em;
+  border-radius: 20px;
+  background: var(--main-accent);
 }
 
+.game-top {
+  display: flex;
+  justify-content: center;
+  gap: 4em;
+}
+
+.game-top__right {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.word {
+  white-space: pre;
+  margin: 2em;
+  color: var(--accent);
+  font-size: 2rem;
+}
+
+.Hangman-lives {
+  margin: auto;
+  width: min-content;
+  background: var(--main-accent);
+  padding: 0.5em;
+  border-radius: 10px;
+}
 /* ***** HEADER ***** */
 .header {
   margin: auto;
@@ -22,6 +61,7 @@ body {
   align-items: center;
   max-width: 1000px;
   padding: 3em;
+  color: white;
 }
 
 .header__player {
@@ -31,8 +71,8 @@ body {
 }
 
 .header__btn {
-  color: #00bcd4;
-  background-color: #2f3336;
+  color: var(--main);
+  background-color: var(--accent);
   border: none;
   border-radius: 10px;
   padding: 10px;
@@ -40,7 +80,7 @@ body {
 
 .header__btn:hover {
   cursor: pointer;
-  background-color: #4d5458;
+  background-color: var(--accent-dark);
 }
 
 /* Leaderboard */
@@ -196,15 +236,23 @@ body {
 
 /* customgame */
 .custom-game-form {
-  width: 100%;
-  height: 100%;
+  position: relative;
+  margin: auto;
+  top: 20%;
+  padding: 2em;
+  border: none;
+  border-radius: 1em;
+  max-width: 20rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 2em;
+  gap: 1em;
+  text-align: center;
+  color: white;
+  background-color: var(--main-accent);
 }
 .custom-game-form__title {
+  font-size: 1rem;
   color: white;
 }
 
@@ -226,8 +274,8 @@ body {
 }
 
 .custom-game-form__btn {
-  color: #15b5e2;
-  background-color: #10131c;
+  color: var(--main);
+  background-color: var(--accent);
   cursor: pointer;
   padding: 7px 12px;
   font-family: Arial, Helvetica, sans-serif;
@@ -236,6 +284,7 @@ body {
   max-width: 170px;
   border: 3px solid #15b5e2;
   border-radius: 20px;
+  margin: auto;
 }
 
 .custom-game-form__btn:hover {
@@ -267,7 +316,7 @@ span {
 .base {
   margin: auto;
   border-radius: 10px;
-  background: #272b2c;
+  background: black;
   display: flex;
   width: 700px;
   height: auto;
@@ -303,9 +352,9 @@ div[class*="line"] + div[class*="line"] {
 
 div[class*="line"] span:not(:active) {
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.7);
-  color: #71d4fe;
+  color: var(--accent);
   padding: 15px;
-  background: #2f3336;
+  background: var(--main-accent);
   border-radius: 12px;
   text-shadow: 0px 0px 40px #71d4fe, 0px 0px 80px #71d4fe;
   width: 45px;
@@ -387,10 +436,6 @@ div[class*="line"] span:active {
   filter: drop-shadow(0px 2px 15px #71d4fe);
 }
 
-.word {
-  white-space: pre;
-}
-
 .Hangman-image {
   border: 10px solid black;
   height: 300px;
@@ -406,21 +451,52 @@ div[class*="line"] span:active {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(49, 52, 52, 0.95);
+  background-color: var(--main-transparent);
   border: none;
   border-radius: 10px;
 }
 
 .result__container {
+  position: relative;
   margin: auto;
+  top: 20%;
   padding: 2em;
   border: none;
   border-radius: 1em;
   max-width: 20rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1em;
   text-align: center;
   color: white;
-  background-color: black;
+  background-color: var(--main-accent);
+}
+
+.result__title {
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.result__btn {
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  padding: 0.5em;
+}
+
+.result__btn:hover {
+  cursor: pointer;
+  background: var(--accent-dark);
+}
+
+.result__request-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.result__player-input {
+  width: 10rem;
 }
