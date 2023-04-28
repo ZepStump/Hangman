@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase-setup/firebase";
 
-function Leaderboard() {
+function Leaderboard({ setDisplayLeaderboard }) {
   const [users, setUsers] = useState({});
   const [numEntities, setNumEntities] = useState(10);
 
@@ -20,6 +20,11 @@ function Leaderboard() {
   const sortedUsers = Object.entries(users)
     .sort((a, b) => b[1].score - a[1].score)
     .slice(0, numEntities);
+
+  // handle close
+  const handleClose = () => {
+    setDisplayLeaderboard(false);
+  };
 
   return (
     <div className="result">
@@ -65,6 +70,9 @@ function Leaderboard() {
           </tbody>
         </table>
       </div>
+      <button className="leaderboard-btn" type="button" onClick={handleClose}>
+        Close
+      </button>
     </div>
   );
 }

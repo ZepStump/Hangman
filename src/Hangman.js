@@ -6,7 +6,6 @@ import Visual from "./components/Graphic";
 import Word from "./components/Word";
 import Letters from "./components/Letters";
 import CustomGame from "./components/CustomGame";
-import GuessedLetters from "./components/GuessedLetters";
 import Result from "./components/Result";
 import Leaderboard from "./components/Leaderboard";
 
@@ -18,23 +17,22 @@ import lives4 from "./images/2-lives.png";
 import lives5 from "./images/1-lives.png";
 import lives6 from "./images/0-lives.png";
 
-import { db } from "./firebase-setup/firebase"
+import { db } from "./firebase-setup/firebase";
 
 export default function Hangman() {
   //db
   const [allPlayers, setAllPlayers] = useState([]);
   useEffect(() => {
-    db.collection("users")
-        .onSnapshot((snapshot) =>
-          setAllPlayers(
-            snapshot.docs.map((doc) => ({
-              name: doc.id,
-              score: doc.data().score,
-              wins: doc.data().wins,
-            }))
-          )
-        );
-  }, [])
+    db.collection("users").onSnapshot((snapshot) =>
+      setAllPlayers(
+        snapshot.docs.map((doc) => ({
+          name: doc.id,
+          score: doc.data().score,
+          wins: doc.data().wins,
+        }))
+      )
+    );
+  }, []);
   // player name
   const [player, setPlayer] = useState("");
   // current player score
@@ -222,7 +220,9 @@ export default function Hangman() {
             setPlayer={setPlayer}
           />
         )}
-        {displayLeaderboard && <Leaderboard />}
+        {displayLeaderboard && (
+          <Leaderboard setDisplayLeaderboard={setDisplayLeaderboard} />
+        )}
       </div>
     </>
   );

@@ -171,6 +171,21 @@ body {
   font-weight: bold;
 }
 
+.leaderboard-btn {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.leaderboard-btn:hover {
+  cursor: pointer;
+  background: var(--accent-dark);
+}
+
 /* homepage */
 
 .btn-wrapper {

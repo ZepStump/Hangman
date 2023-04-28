@@ -11,10 +11,16 @@ export default function Header({
   // control input
   const handleChange = (e) => setPlayer(e.target.value);
   // toggle leaderboard
-  const toggleLeaderboard = () =>
+  const toggleLeaderboard = () => {
+    setDisplayCustomGame(false);
     setDisplayLeaderboard((previous) => !previous);
+  };
+
   // toggle custom game
-  const toggleCustomGame = () => setDisplayCustomGame((previous) => !previous);
+  const toggleCustomGame = () => {
+    setDisplayLeaderboard(false);
+    setDisplayCustomGame((previous) => !previous);
+  };
 
   return (
     <header className="header">
