@@ -176,7 +176,10 @@ export default function Hangman() {
         />
 
         {displayCustomGame && (
-          <CustomGame setDisplayCustomGame={setDisplayCustomGame} />
+          <CustomGame
+            setGameWord={setGameWord}
+            setDisplayCustomGame={setDisplayCustomGame}
+          />
         )}
         {(gameWon || lives === 0) && (
           <Result

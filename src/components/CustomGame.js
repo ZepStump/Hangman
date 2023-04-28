@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 // form to create custom game
-export default function CustomGame({ setDisplayCustomGame }) {
+export default function CustomGame({ setGameWord, setDisplayCustomGame }) {
   // custom word controlled input
   const [customWord, setCustomWord] = useState("");
   // encoded custom word
@@ -22,6 +23,15 @@ export default function CustomGame({ setDisplayCustomGame }) {
 
   // handle close
   const handleClose = () => {
+    setDisplayCustomGame(false);
+  };
+
+  // handle play now
+  const handlePlayNow = () => {
+    setGameWord({
+      category: "Custom",
+      word: customWord,
+    });
     setDisplayCustomGame(false);
   };
 
@@ -50,12 +60,24 @@ export default function CustomGame({ setDisplayCustomGame }) {
           type="submit"
           htmlFor="custom-game-form"
         >
-          Get Link
+          Create Game
         </button>
+
         {encodedCustomWord && (
-          <a
-            href={`https://zepstump.github.io/Hangman/#/${encodedCustomWord}`}
-          >{`zepstump.github.io/Hangman/#/${encodedCustomWord}`}</a>
+          <>
+            <Link to={`/#/${encodedCustomWord}`}>
+              <button
+                className="custom-game-form__btn"
+                type="button"
+                onClick={handlePlayNow}
+              >
+                Play Now
+              </button>
+            </Link>
+            <a
+              href={`https://zepstump.github.io/Hangman/#/${encodedCustomWord}`}
+            >{`zepstump.github.io/Hangman/#/${encodedCustomWord}`}</a>
+          </>
         )}
         <button className="result__btn" type="button" onClick={handleClose}>
           Close
