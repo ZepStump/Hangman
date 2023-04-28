@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { randomWord } from "../RandomWord";
 
 export default function Result({
@@ -9,7 +9,12 @@ export default function Result({
   gameWon,
   lives,
   difficulty,
+  player,
+  setPlayer,
 }) {
+  // has user entered name
+  const [isPlayer, setIsPlayer] = useState(player.length > 0 ? true : false);
+
   // get new word and reset game
   const handlePlay = () => {
     setGameWord({ category: "Testing", word: randomWord(difficulty) });
@@ -53,11 +58,34 @@ export default function Result({
   // calc score
   const score = gameWon
     ? (lettersGuessed + lives) * difficultyMultiplier() * 2
-    : lettersGuessed + difficultyMultiplier();
+    : lettersGuessed * difficultyMultiplier();
+
+  // handle add score with new player name
+  const handleAddScore = () => {
+    setIsPlayer(true);
+  };
 
   return (
     <div className="result">
       <div className="result__container">
+        {!isPlayer && (
+          <div>
+            <h3>Please enter a name to add your results to the leaderboard!</h3>
+            <input
+              className="player__input"
+              type="text"
+              value={player}
+              onChange={(e) => setPlayer(e.target.value)}
+            />
+            <button
+              className="result__add-btn"
+              type="button"
+              onClick={handleAddScore}
+            >
+              Add score
+            </button>
+          </div>
+        )}
         <h2>You {gameWon ? "Won!" : "Lost."}</h2>
         <div>
           <p>Word: {gameWord.word}</p>

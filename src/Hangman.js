@@ -179,6 +179,8 @@ export default function Hangman() {
             gameWon={gameWon}
             lives={lives}
             difficulty={difficulty}
+            player={player}
+            setPlayer={setPlayer}
           />
         )}
         {displayLeaderboard && <Leaderboard />}
