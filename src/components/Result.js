@@ -14,7 +14,14 @@ export default function Result({
   const handlePlay = () => {
     setGameWord({ category: "Testing", word: randomWord(difficulty) });
     setGuessedLetters({});
+
+    // change all color back for the key on the keyboard back
+    const line1Els = document.querySelectorAll('span');
+    line1Els.forEach((el) => {
+      el.style.backgroundColor = '#10131c';
+    });
   };
+  
 
   // calc letters guessed correctly
   const lettersGuessed = Object.values(guessedLetters).reduce(

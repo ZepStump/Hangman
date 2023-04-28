@@ -24,7 +24,7 @@ export default function CustomGame() {
       <label className="custom-game-form__label">
         Custom game:
         <input
-          className="custom-gmae-form__input"
+          className="custom-game-form__input"
           type="text"
           value={customWord}
           onChange={(e) => handleChange(e)}
