@@ -54,8 +54,8 @@ export default function CustomGame({ setDisplayCustomGame }) {
         </button>
         {encodedCustomWord && (
           <a
-            href={`http://localhost:3000/Hangman/${encodedCustomWord}`}
-          >{`http://localhost:3000/Hangman/${encodedCustomWord}`}</a>
+            href={`zepstump.github.io/Hangman/${encodedCustomWord}`}
+          >{`zepstump.github.io/Hangman/${encodedCustomWord}`}</a>
         )}
         <button className="result__btn" type="button" onClick={handleClose}>
           Close
