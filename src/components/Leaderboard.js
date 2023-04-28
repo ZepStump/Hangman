@@ -9,6 +9,7 @@ function Leaderboard({ setDisplayLeaderboard }) {
     db.collection("users").onSnapshot((snapshot) =>
       setUsers(
         snapshot.docs.map((doc) => ({
+          username: doc.id,
           score: doc.data().score,
           wins: doc.data().wins,
         }))
@@ -56,7 +57,7 @@ function Leaderboard({ setDisplayLeaderboard }) {
           </thead>
           <tbody>
             {/* Add some different styles to top-1, top-2, top-3 */}
-            {sortedUsers.map(([username, { score, wins }], index) => (
+            {sortedUsers.map(([id, { username, score, wins }], index) => (
               <tr
                 key={username}
                 className={index < 3 ? `top-${index + 1}` : ""}
