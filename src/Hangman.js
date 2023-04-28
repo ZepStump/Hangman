@@ -49,12 +49,19 @@ export default function Hangman() {
   const [difficulty, setDifficulty] = useState("Easy");
 
   // Changing the difficulty
-  const changeDifficulty = () =>
-    setDifficulty(
-      difficulties[
-        difficulty === "Quotes" ? 0 : difficulties.indexOf(difficulty) + 1
-      ]
-    );
+  const changeDifficulty = () => {
+    console.log(difficulty);
+    switch (difficulty) {
+      case "Easy":
+        setDifficulty("Medium");
+        break;
+      case "Medium":
+        setDifficulty("Hard");
+        break;
+      default:
+        setDifficulty("Easy");
+    }
+  };
 
   // Getting and Setting images
   const [image, setImage] = useState(0);
@@ -158,11 +165,11 @@ export default function Hangman() {
                   setGameWord({
                     category: "Testing",
                     word: randomWord(
-                      difficulties[
-                        difficulties.indexOf(difficulty) === 3
-                          ? 0
-                          : difficulties.indexOf(difficulty) + 1
-                      ]
+                      difficulty === "Easy"
+                        ? "Medium"
+                        : difficulty === "Medium"
+                        ? "Hard"
+                        : "Easy"
                     ),
                   });
                 }}
