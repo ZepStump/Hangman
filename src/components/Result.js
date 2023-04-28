@@ -95,7 +95,7 @@ export default function Result({
       }
       }
     }
-  }, [score]);
+  }, [score, player]);
 
   // handle add score with new player name
   const handleAddScore = () => {
